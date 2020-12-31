@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'rest-client'
+
 Favorite.destroy_all
 Movie.destroy_all
 User.destroy_all
@@ -34,27 +36,20 @@ user_arr.each do |userObj|
   User.create!(userObj)
 end
 
-puts "Creating Movies 📺 "
-movie_arr = [
-  {
-    title: "Step Up: High Water",
-    overview: "Dancing Movie",
-    img: "https://lionsgate.brightspotcdn.com/b0/0b/68611fe24fe6ad77684632205408/step-up-high-water-season-1-shows-background-01.jpg"
-  },
-  {
-    title: "The Croods",
-    overview: "Cavemen",
-    img: "https://static01.nyt.com/images/2020/11/23/arts/croods1/merlin_180254292_b13cc31e-dd95-4326-8dfa-45c88ecd0dcf-superJumbo.jpg"
-  },
-  {
-    title: "Bridgerton",
-    overview: "Fancy Royals",
-    img: "https://static.hollywoodreporter.com/wp-content/uploads/2020/12/BRIDGERTON_105_Unit_01118RC-h-2020-1608340119-928x523.jpg"
-  },
-]
+key = ENV['TMDB_API_KEY']
 
-movie_arr.each do |movieObj|
-  Movie.create!(movieObj)
+movieResp = RestClient.get("https://api.themoviedb.org/3/discover/tv?api_key=#{key}&with_networks=213")
+movieArr = JSON.parse(movieResp)["results"]
+# byebug
+
+puts "Creating Movies 📺 "
+
+movieArr.each do |movie|
+  Movie.create!(
+    title: movie["name"],
+    overview: movie["overview"],
+    img: movie["poster_path"]
+  )
 end
 
 puts "Creating Favorites ⭐️ "
