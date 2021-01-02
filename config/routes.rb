@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   namespace :api do 
     namespace :v1 do
-      resources :favorites, :movies, :users
+      resources :favorites, only: [:index, :show, :destroy] 
+      resources :movies, only: [:index, :show] 
+      resources :users
       post '/login', to: 'users#login'
     end
   end
