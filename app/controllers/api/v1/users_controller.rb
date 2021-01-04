@@ -37,7 +37,7 @@ class Api::V1::UsersController < ApplicationController
     if (user && user.authenticate(params[:password]))
       render json: user
     else
-      render json: {errors: "invalid username"}
+      render json: {errors: "Invalid credentials, please try again!"}
     end
   end
 
