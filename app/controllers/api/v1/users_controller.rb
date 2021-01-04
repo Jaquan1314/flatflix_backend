@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create]
+  skip_before_action :authorized, only: [:create, :index]
   
   def index
     users = User.all
@@ -38,13 +38,8 @@ class Api::V1::UsersController < ApplicationController
     render json: {}
   end
 
-  def login
-    user = User.find_by(username: params[:username])
-    if (user && user.authenticate(params[:password]))
-      render json: user
-    else
-      render json: {errors: "Invalid credentials, please try again!"}
-    end
+  def profile
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
   end
 
   private

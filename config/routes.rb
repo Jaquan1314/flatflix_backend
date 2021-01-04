@@ -5,7 +5,8 @@ Rails.application.routes.draw do
       resources :favorites, only: [:index, :show, :destroy] 
       resources :movies, only: [:index, :show] 
       resources :users
-      post '/login', to: 'users#login'
+      post '/login', to: 'auth#create'
+      get '/profile', to: 'users#profile'
     end
   end
   
