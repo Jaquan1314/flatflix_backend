@@ -1,3 +1,4 @@
+# require 'jwt'
 class ApplicationController < ActionController::API
   before_action :authorized
 
@@ -17,7 +18,7 @@ class ApplicationController < ActionController::API
       token = auth_header.split(' ')[1]
       # header: { 'Authorization': 'Bearer <token>' }
       begin
-        JWT.decode(token, MY_SECRET, true, algorithm: 'HS256')[0]
+        JWT.decode(token, MY_SECRET, true, algorithm: 'HS256')
       rescue JWT::DecodeError
         nil
       end
