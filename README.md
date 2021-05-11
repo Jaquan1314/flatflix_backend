@@ -1,24 +1,10 @@
-# README
+# Flatflix
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Netflix Clone
 
-Things you may want to cover:
+## DEMO
+You can view the front-end repo [here](https://github.com/Jaquan1314/flatflix_frontend)   
+View demo [here](https://www.youtube.com/watch?v=J0ZtdCOp-ZQ&list=PL1zwM_vN0UcmAu8kI-pCEZuFd4RutqAFH&index=2&t=12s)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Contributors
+This app was co-built by [Javaughn Grant](https://github.com/Jaquan1314) and [Shevaughn Grant](https://github.com/techtwins)
